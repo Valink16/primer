@@ -15,3 +15,21 @@ def primeList(limit,getTime=False):
         e=time()
         return {"primes":primes,"time":e-s}
     return {"primes":primes}
+
+def factorize(nb):
+    primes=primeList(1000)["primes"]
+    originalNb=nb
+    factorized=[]
+    states=[]
+    loop=True
+    while(loop):
+        for fact in primes:
+            if(nb%fact==0):
+                factorized.append(fact)
+                nb/=fact
+                states.append(nb)
+                break
+        if(int(nb)==1):
+            loop=False
+
+    return {"factors":factorized, "states":states}
